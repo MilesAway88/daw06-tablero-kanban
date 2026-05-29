@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tablero MilesBan | DAW06</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <script type="module" src="js/script.js"></script>
+  </head>
+  <body>
+    <header>
+      <!-- Logo + Nombre -->
+      <div class="titulo-web">
+        <img src="img/logo-dark-bg.png" alt="Logo de MilesBan" class="logo" />
+        <h1>Gestor de Tareas MilesBan</h1>
+      </div>
+      <!-- Estadísticas -->
+      <div id="panel-stats" class="panel-stats">
+        <p>Total: <span id="stat-total">0</span></p>
+        <p>Pendientes: <span id="stat-pendientes">0</span></p>
+        <p>En curso: <span id="stat-curso">0</span></p>
+        <p>Hechas: <span id="stat-hechas">0</span></p>
+      </div>
+    </header>
+
+    <main class="principal">
+      <!-- Crear / Editar Tarea -->
+      <section id="zona-formulario">
+        <h2>Crear / Editar Tarea</h2>
+        <form id="formulario-tarea">
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" name="titulo" required />
+
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion"></textarea>
+
+          <label for="prioridad">Prioridad:</label>
+          <select id="prioridad" name="prioridad">
+            <option value="baja">Baja</option>
+            <option value="media">Media</option>
+            <option value="alta">Alta</option>
+          </select>
+
+          <label for="fechaVencimiento">Fecha límite:</label>
+          <input type="date" id="fechaVencimiento" name="fechaVencimiento" />
+
+          <div class="botones">
+            <button type="submit" id="boton-crear">Crear Tarea</button>
+            <button type="reset" id="boton-cancelar">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tablero -->
+      <div id="zona-tareas">
+        <!-- Filtros -->
+        <aside id="zona-filtros">
+          <div class="busqueda">
+            <svg
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              width="25px"
+              height="25px"
+              viewBox="0 0 612.08 612.08"
+              style="enable-background: new 0 0 612.08 612.08"
+              xml:space="preserve"
+            >
+              <path
+                d="M237.927,0C106.555,0,0.035,106.52,0.035,237.893c0,131.373,106.52,237.893,237.893,237.893
+		c50.518,0,97.368-15.757,135.879-42.597l0.028-0.028l176.432,176.433c3.274,3.274,8.48,3.358,11.839,0l47.551-47.551
+		c3.274-3.274,3.106-8.703-0.028-11.838L433.223,373.8c26.84-38.539,42.597-85.39,42.597-135.907C475.82,106.52,369.3,0,237.927,0z
+		 M237.927,419.811c-100.475,0-181.918-81.443-181.918-181.918S137.453,55.975,237.927,55.975s181.918,81.443,181.918,181.918
+		S338.402,419.811,237.927,419.811z"
+              />
+            </svg>
+
+            <input
+              type="text"
+              id="campo-busqueda"
+              placeholder="Buscar por título o descripción..."
+            />
+          </div>
+          <div class="filtros">
+            <select id="filtro-estado">
+              <option value="todos">Todos los estados</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="curso">En curso</option>
+              <option value="hecha">Hecha</option>
+            </select>
+            <select id="filtro-prioridad">
+              <option value="todas">Todas las prioridades</option>
+              <option value="baja">Baja</option>
+              <option value="media">Media</option>
+              <option value="alta">Alta</option>
+            </select>
+          </div>
+        </aside>
+
+        <!-- Columnas -->
+        <section id="zona-tablero">
+          <div class="columna" id="col-pendiente">
+            <h2>Pendiente</h2>
+            <div class="lista-tareas" id="lista-pendiente"></div>
+          </div>
+          <div class="columna" id="col-curso">
+            <h2>En curso</h2>
+            <div class="lista-tareas" id="lista-curso"></div>
+          </div>
+          <div class="columna" id="col-hecha">
+            <h2>Hecha</h2>
+            <div class="lista-tareas" id="lista-hecha"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 - Todos los derechos reservados</p>
+      <p>UT6 - Documentación y control de versiones</p>
+    </footer>
+  </body>
+</html>

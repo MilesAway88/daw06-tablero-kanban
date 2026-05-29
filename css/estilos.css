@@ -1,0 +1,223 @@
+:root {
+  --baja: #4ade80;
+  --media: #facc15;
+  --alta: #f87171;
+  --fondo: #f3f4f6;
+  --columna: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--fondo);
+  color: #233144;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+/* === HEADER === */
+header {
+  background: #233144;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.titulo-web {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logo {
+  height: 3rem;
+  width: auto;
+}
+
+.panel-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* === MAIN === */
+.principal {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+/* === FORMULARIO TAREA === */
+#zona-formulario {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+#zona-formulario form {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+input, textarea, select {
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.botones button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: #296dda;
+  color: #fff;
+  border: none;
+}
+
+#boton-cancelar {
+  background: #e94a4a;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 3px solid #3b82f6;
+  /* outline-offset: 1px; */
+}
+
+button:hover {
+  opacity: 90%;
+}
+
+button:focus {
+  outline: 3px solid #233144;
+}
+
+/* === ZONA TAREAS === */
+#zona-tareas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* === BÚSQUEDA + FILTROS === */
+#zona-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.busqueda {
+  display: flex;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+#campo-busqueda {
+  min-width: 50%;
+}
+
+.filtros {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* === TABLERO === */
+#zona-tablero {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.columna {
+  flex: 1;
+  min-width: 250px;
+  background: var(--columna);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.lista-tareas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 100px;
+}
+
+.tarjeta {
+  background: #fff;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 4px solid #9ca3af;
+}
+
+.tarjeta.alta {
+  border-left-color: var(--alta);
+}
+
+.tarjeta.media {
+  border-left-color: var(--media);
+}
+
+.tarjeta.baja {
+  border-left-color: var(--baja);
+}
+
+/* === FOOTER === */
+footer {
+  background: #233144;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .principal {
+    flex-direction: column;
+  }
+
+  #zona-tablero {
+    flex-direction: column;
+    min-width: 100%;
+  }
+
+  #campo-busqueda {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 950px) {
+  #zona-filtros {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
