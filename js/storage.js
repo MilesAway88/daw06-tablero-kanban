@@ -6,6 +6,7 @@ function cargarTareas() {
   try {
     const datos = localStorage.getItem(CLAVE_STORAGE);
     return datos ? JSON.parse(datos) : [];
+    console.log("Tareas cargadas OK");
   } catch (error) {
     console.error("Error al cargar las tareas:", error);
     return [];
@@ -15,6 +16,7 @@ function cargarTareas() {
 function guardarTareas(listaTareas) {
   try {
     localStorage.setItem(CLAVE_STORAGE, JSON.stringify(listaTareas));
+    console.log("Tareas guardadas OK");
   } catch (error) {
     console.error("Error al guardar las tareas:", error)
   }
@@ -26,6 +28,7 @@ function inicializarDatos() {
   if (tareas.length === 0) {
     tareas = getDatosPrueba();
     guardarTareas(tareas);
+    console.log("Datos de prueba inicializados");
   }
 
   return tareas;

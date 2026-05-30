@@ -19,22 +19,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2. Cargar tareas
   tareas = inicializarDatos();
+  console.log("App inicializada. Tareas cargadas:", tareas.length);
 
   // 3. Actualizar stats
-  actualizarStats();
+  //actualizarStats();
 
   // 4. Renderizar tablero
-  // TODO
+  //renderizarTablero();
 
   // 5. Manejar eventos
-  configurarEventos();
+  //configurarEventos();
 });
 
 function configurarEventos() {
   // Listener formulario
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    validarFormulario();
+    //validarFormulario();
   })
 
   // Listener búsqueda
