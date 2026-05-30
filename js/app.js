@@ -1,22 +1,40 @@
+import { crearTarea } from "./modelo.js";
+import { cargarTareas, guardarTareas, inicializarDatos } from "./storage.js";
+import { renderizarTablero, actualizarStats, limpiarFormulario } from "./ui.js";
+
+// ESTADO GLOBAL
 let tareas = [];
 let tareaEditando = null;
 
-const formulario = document.getElementById("formulario-tarea");
-const botonCrear = document.getElementById("boton-crear");
-const campoBusqueda = document.getElementById("campo-busqueda");
-const filtroEstado = document.getElementById("filtro-estado");
-const filtroPrioridad = document.getElementById("filtro-prioridad");
+// Referencias a elementos del DOM (luego se cargan cuando el DOM esté listo)
+let formulario, botonCrear, campoBusqueda, filtroEstado, filtroPrioridad;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // TODO: Cargar tareas
+  // 1. Obtener elementos DOM
+  formulario = document.getElementById("formulario-tarea");
+  botonCrear = document.getElementById("boton-crear");
+  campoBusqueda = document.getElementById("campo-busqueda");
+  filtroEstado = document.getElementById("filtro-estado");
+  filtroPrioridad = document.getElementById("filtro-prioridad");
 
-  // TODO: Pintar tablero
+  // 2. Cargar tareas
+  tareas = inicializarDatos();
 
+  // 3. Actualizar stats
+  actualizarStats();
+
+  // 4. Renderizar tablero
+  // TODO
+
+  // 5. Manejar eventos
+  configurarEventos();
+});
+
+function configurarEventos() {
   // Listener formulario
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    // TODO: Validar y crear/editar
+    validarFormulario();
   })
 
   // Listener búsqueda
@@ -32,4 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
   filtroPrioridad.addEventListener("change", () => {
     // TODO: Filtrar por prioridad
   })
-});
+}
+
+function validarFormulario() {
+  // TODO
+}
