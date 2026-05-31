@@ -1,5 +1,3 @@
-import { getDatosPrueba } from "./modelo.js";
-
 const CLAVE_STORAGE = "tareasKanban";
 
 function cargarTareas() {
@@ -22,20 +20,8 @@ function guardarTareas(listaTareas) {
   }
 }
 
-function inicializarDatos() {
-  let tareas = cargarTareas();
-
-  if (tareas.length === 0) {
-    tareas = getDatosPrueba();
-    guardarTareas(tareas);
-    console.log("Datos de prueba inicializados");
-  }
-
-  return tareas;
-}
-
 function limpiarStorage() {
   localStorage.removeItem(CLAVE_STORAGE);
 }
 
-export { cargarTareas, guardarTareas, inicializarDatos, limpiarStorage }
+export { cargarTareas, guardarTareas, limpiarStorage }

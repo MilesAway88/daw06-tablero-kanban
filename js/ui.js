@@ -1,4 +1,4 @@
-function renderizarTablero(tareas) {
+function crearTarjeta(tarea) {
   // TODO
 }
 
