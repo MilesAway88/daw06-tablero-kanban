@@ -1,5 +1,5 @@
-import { getDatosPrueba } from "./modelo";
-import { cargarTareas, guardarTareas } from "./storage";
+import { getDatosPrueba } from "./modelo.js";
+import { cargarTareas, guardarTareas } from "./storage.js";
 
 let tareas = [];
 

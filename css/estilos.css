@@ -25,6 +25,10 @@ a, button {
   cursor: pointer;
 }
 
+button:hover {
+  opacity: 90%;
+}
+
 /* === HEADER === */
 header {
   background: #233144;
@@ -105,10 +109,6 @@ input:focus, textarea:focus, select:focus {
   /* outline-offset: 1px; */
 }
 
-button:hover {
-  opacity: 90%;
-}
-
 button:focus {
   outline: 3px solid #233144;
 }
@@ -186,6 +186,34 @@ button:focus {
 
 .tarjeta.baja {
   border-left-color: var(--baja);
+}
+
+.tarjeta-acciones {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tarjeta-acciones button {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.tarjeta-acciones button:hover {
+  background: #e5e7eb;
+  /* opacity: 90%; */
+}
+
+.tarjeta-acciones select {
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
 }
 
 /* === FOOTER === */
