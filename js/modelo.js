@@ -21,4 +21,10 @@ function getDatosPrueba() {
   ];
 }
 
-export { crearTarea, getDatosPrueba }
+function formatearFecha(fechaISO) {
+  if (!fechaISO) return "Sin fecha límite";
+  const [anyo, mes, dia] = fechaISO.split("-");
+  return `${dia}/${mes}/${anyo}`;
+}
+
+export { crearTarea, getDatosPrueba, formatearFecha }
