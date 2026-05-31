@@ -10,11 +10,6 @@ function crearTarjeta(tarea) {
     <div class="tarjeta-acciones">
       <button class="btn-editar" data-id="${tarea.id}">Editar</button>
       <button class="btn-eliminar" data-id="${tarea.id}">Eliminar</button>
-      <select class="select-estado" data-id="${tarea.id}">
-        <option value="pendiente" ${tarea.estado === "pendiente" ? "selected" : ""}>Pendiente</option>
-        <option value="curso" ${tarea.estado === "curso" ? "selected" : ""}>En curso</option>
-        <option value="hecha" ${tarea.estado === "hecha" ? "selected" : ""}>Hecha</option>
-      </select>
     </div>
   `;
 
@@ -31,7 +26,6 @@ function renderizarTablero(tareas, callbacks) {
     
     tarjeta.querySelector(".btn-editar").addEventListener("click", () => callbacks.onEditar(tarea.id));
     tarjeta.querySelector(".btn-eliminar").addEventListener("click", () => callbacks.onEliminar(tarea.id));
-    tarjeta.querySelector(".select-estado").addEventListener("change", (e) => callbacks.onCambiarEstado(tarea.id, e.target.value));
 
     document.getElementById(`lista-${tarea.estado}`).appendChild(tarjeta);
   });

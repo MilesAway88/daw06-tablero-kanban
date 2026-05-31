@@ -20,8 +20,8 @@ function refrescarUI() {
 
 function configurarEventos() {
   // Listeners formulario
-  formulario.addEventListener("submit", (e) => manejarSubmit);
-  formulario.addEventListener("reset", (e) => {
+  formulario.addEventListener("submit", manejarSubmit);
+  formulario.addEventListener("reset", () => {
     tareaEditando = null;
     headerFormulario.textContent = "Crear Tarea";
     botonCrear.textContent = "Crear tarea";
@@ -55,6 +55,7 @@ function manejarSubmit(e) {
     titulo: titulo,
     descripcion: document.getElementById("descripcion").value.trim(),
     prioridad: document.getElementById("prioridad").value,
+    estado: document.getElementById("estado").value,
     fechaVencimiento: document.getElementById("fechaVencimiento").value,
   };
 

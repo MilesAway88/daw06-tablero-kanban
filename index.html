@@ -41,6 +41,13 @@
             <option value="alta">Alta</option>
           </select>
 
+          <label for="estado">Estado:</label>
+          <select id="estado" name="estado">
+            <option value="pendiente">Pendiente</option>
+            <option value="curso">En curso</option>
+            <option value="hecha">Hecha</option>
+          </select>
+
           <label for="fechaVencimiento">Fecha límite:</label>
           <input type="date" id="fechaVencimiento" name="fechaVencimiento" />
 
@@ -104,11 +111,7 @@
         <section id="zona-tablero">
           <article class="columna" id="col-pendiente">
             <h2>Pendiente</h2>
-            <div class="lista-tareas" id="lista-pendiente">
-              <div class="tarjeta">
-
-              </div>
-            </div>
+            <div class="lista-tareas" id="lista-pendiente"></div>
           </article>
           <article class="columna" id="col-curso">
             <h2>En curso</h2>
