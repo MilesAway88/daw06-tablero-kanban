@@ -26,7 +26,7 @@
     <main class="principal">
       <!-- Crear / Editar Tarea -->
       <section id="zona-formulario">
-        <h2>Crear / Editar Tarea</h2>
+        <h2 id="header-formulario">Crear / Editar Tarea</h2>
         <form id="formulario-tarea">
           <label for="titulo">Título:</label>
           <input type="text" id="titulo" name="titulo" required />
@@ -41,11 +41,18 @@
             <option value="alta">Alta</option>
           </select>
 
+          <label for="estado">Estado:</label>
+          <select id="estado" name="estado">
+            <option value="pendiente">Pendiente</option>
+            <option value="curso">En curso</option>
+            <option value="hecha">Hecha</option>
+          </select>
+
           <label for="fechaVencimiento">Fecha límite:</label>
           <input type="date" id="fechaVencimiento" name="fechaVencimiento" />
 
           <div class="botones">
-            <button type="submit" id="boton-crear">Crear Tarea</button>
+            <button type="submit" id="boton-crear">Crear tarea</button>
             <button type="reset" id="boton-cancelar">Cancelar</button>
           </div>
         </form>
@@ -102,18 +109,18 @@
 
         <!-- Columnas -->
         <section id="zona-tablero">
-          <div class="columna" id="col-pendiente">
+          <article class="columna" id="col-pendiente">
             <h2>Pendiente</h2>
             <div class="lista-tareas" id="lista-pendiente"></div>
-          </div>
-          <div class="columna" id="col-curso">
+          </article>
+          <article class="columna" id="col-curso">
             <h2>En curso</h2>
             <div class="lista-tareas" id="lista-curso"></div>
-          </div>
-          <div class="columna" id="col-hecha">
+          </article>
+          <article class="columna" id="col-hecha">
             <h2>Hecha</h2>
             <div class="lista-tareas" id="lista-hecha"></div>
-          </div>
+          </article>
         </section>
       </div>
     </main>
