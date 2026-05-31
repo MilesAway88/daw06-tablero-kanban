@@ -6,7 +6,7 @@ function crearTarjeta(tarea) {
   tarjeta.innerHTML = `
     <h3>${tarea.titulo}</h3>
     <p>${tarea.descripcion}</p>
-    <small>${tarea.fechaVencimiento}</small>
+    <small>${tarea.fechaVencimiento || "Sin fecha límite"}</small>
     <div class="tarjeta-acciones">
       <button class="btn-editar" data-id="${tarea.id}">Editar</button>
       <button class="btn-eliminar" data-id="${tarea.id}">Eliminar</button>
