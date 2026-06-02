@@ -78,6 +78,7 @@ function cargarEnFormulario(id) {
   document.getElementById("titulo").value = tarea.titulo;
   document.getElementById("descripcion").value = tarea.descripcion;
   document.getElementById("prioridad").value = tarea.prioridad;
+  document.getElementById("estado").value = tarea.estado;
   document.getElementById("fechaVencimiento").value = tarea.fechaVencimiento;
 
   tareaEditando = id;
