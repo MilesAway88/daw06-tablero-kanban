@@ -7,7 +7,13 @@ let tareaEditando = null;
 let formulario, headerFormulario, botonCrear, campoBusqueda, filtroEstado, filtroPrioridad;
 
 function refrescarUI() {
-  const tareas = getTareas();
+  const filtros = {
+    busqueda: campoBusqueda.value.trim(),
+    estado: filtroEstado.value,
+    prioridad: filtroPrioridad.value
+  };
+
+  const tareas = getTareasFiltradas(getTareas(), filtros);
 
   renderizarTablero(tareas, {
     onEditar: cargarEnFormulario,
@@ -16,22 +22,6 @@ function refrescarUI() {
   });
   
   actualizarStats(tareas);
-}
-
-function aplicarFiltros() {
-  const filtros = {
-    busqueda: campoBusqueda.value,
-    estado: filtroEstado.value,
-    prioridad: filtroPrioridad.value
-  };
-
-  const tareasVisibles = getTareasFiltradas(getTareas(), filtros);
-  renderizarTablero(tareasVisibles, {
-    onEditar: cargarEnFormulario,
-    onEliminar: confirmarEliminar,
-    onCambiarEstado: cambiarEstado
-  });
-  actualizarStats();
 }
 
 function configurarEventos() {
@@ -44,9 +34,9 @@ function configurarEventos() {
   });
 
   // Listeners filtros
-  campoBusqueda.addEventListener("input", aplicarFiltros);
-  filtroEstado.addEventListener("change", aplicarFiltros);
-  filtroPrioridad.addEventListener("change", aplicarFiltros);
+  campoBusqueda.addEventListener("input", refrescarUI);
+  filtroEstado.addEventListener("change", refrescarUI);
+  filtroPrioridad.addEventListener("change", refrescarUI);
 }
 
 function manejarSubmit(e) {
