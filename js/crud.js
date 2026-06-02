@@ -48,6 +48,18 @@ function cambiarEstado(id, nuevoEstado) {
 
 function getTareasFiltradas(tareas, filtros) {
   const { busqueda = "", estado = "todos", prioridad = "todas" } = filtros;
+
+  return tareas.filter(t => {
+    const coincideEstado = estado === "todos" || t.estado === estado;
+    const coincidePrioridad = prioridad === "todas" || t.prioridad === prioridad;
+
+    const textoBusqueda = busqueda.toLowerCase();
+    const coincideTexto = busqueda === "" ||
+                          t.titulo.toLowerCase().includes(textoBusqueda) ||
+                          (t.descripcion && t.descripcion.toLowerCase().includes(textoBusqueda));
+
+    return coincideEstado && coincidePrioridad && coincideTexto;
+  });
 }
 
 export {
@@ -57,4 +69,5 @@ export {
   editarTarea,
   eliminarTarea,
   cambiarEstado,
+  getTareasFiltradas
 };
