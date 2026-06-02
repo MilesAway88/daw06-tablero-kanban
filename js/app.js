@@ -1,4 +1,4 @@
-import { agregarTarea, cambiarEstado, editarTarea, eliminarTarea, getTareas, inicializarDatos } from "./crud.js";
+import { agregarTarea, cambiarEstado, editarTarea, eliminarTarea, getTareas, getTareasFiltradas, inicializarDatos } from "./crud.js";
 import { crearTarea } from "./modelo.js";
 import { cargarTareas, guardarTareas } from "./storage.js";
 import { renderizarTablero, actualizarStats, limpiarFormulario } from "./ui.js";
@@ -7,7 +7,13 @@ let tareaEditando = null;
 let formulario, headerFormulario, botonCrear, campoBusqueda, filtroEstado, filtroPrioridad;
 
 function refrescarUI() {
-  const tareas = getTareas();
+  const filtros = {
+    busqueda: campoBusqueda.value.trim(),
+    estado: filtroEstado.value,
+    prioridad: filtroPrioridad.value
+  };
+
+  const tareas = getTareasFiltradas(getTareas(), filtros);
 
   renderizarTablero(tareas, {
     onEditar: cargarEnFormulario,
@@ -15,7 +21,7 @@ function refrescarUI() {
     onCambiarEstado: cambiarEstado
   });
   
-  //actualizarStats(tareas);
+  actualizarStats(tareas);
 }
 
 function configurarEventos() {
@@ -27,19 +33,10 @@ function configurarEventos() {
     botonCrear.textContent = "Crear tarea";
   });
 
-  // Listener búsqueda
-  campoBusqueda.addEventListener("input", () => {
-    // TODO: Filtrar por palabras
-  })
-
   // Listeners filtros
-  filtroEstado.addEventListener("change", () => {
-    // TODO: Filtrar por estado
-  })
-
-  filtroPrioridad.addEventListener("change", () => {
-    // TODO: Filtrar por prioridad
-  })
+  campoBusqueda.addEventListener("input", refrescarUI);
+  filtroEstado.addEventListener("change", refrescarUI);
+  filtroPrioridad.addEventListener("change", refrescarUI);
 }
 
 function manejarSubmit(e) {
@@ -65,7 +62,7 @@ function manejarSubmit(e) {
     headerFormulario.textContent = "Crear Tarea";
     botonCrear.textContent = "Crear tarea";
   } else {
-    const nuevaTarea = crearTarea(titulo, datos.descripcion, datos.prioridad, "pendiente", datos.fechaVencimiento);
+    const nuevaTarea = crearTarea(titulo, datos.descripcion, datos.prioridad, datos.estado, datos.fechaVencimiento);
     agregarTarea(nuevaTarea);
   }
 
@@ -81,6 +78,7 @@ function cargarEnFormulario(id) {
   document.getElementById("titulo").value = tarea.titulo;
   document.getElementById("descripcion").value = tarea.descripcion;
   document.getElementById("prioridad").value = tarea.prioridad;
+  document.getElementById("estado").value = tarea.estado;
   document.getElementById("fechaVencimiento").value = tarea.fechaVencimiento;
 
   tareaEditando = id;

@@ -1,4 +1,4 @@
-import { formatearFecha } from "./modelo.js";
+import { formatearFecha } from "./utils.js";
 
 function crearTarjeta(tarea) {
   const tarjeta = document.createElement("div");
@@ -34,15 +34,18 @@ function renderizarTablero(tareas, callbacks) {
 }
 
 function actualizarStats(tareas) {
-  const statTotal = document.getElementById("stat-total");
-  const statPendientes = document.getElementById("stat-pendientes");
-  const statCurso = document.getElementById("stat-curso");
-  const statHechas = document.getElementById("stat-hechas");
+  const total = tareas.length;
+  const pendientes = tareas.filter(tarea => tarea.estado === "pendiente").length;
+  const curso = tareas.filter(tarea => tarea.estado === "curso").length;
+  const hechas = tareas.filter(tarea => tarea.estado === "hecha").length;
 
-  statTotal.textContent = tareas.length;
-  statPendientes.textContent = tareas.filter(tarea => tarea.estado === "pendiente").length;
-  statCurso.textContent = tareas.filter(tarea => tarea.estado === "curso").length;
-  statHechas.textContent = tareas.filter(tarea => tarea.estado === "hecha").length;
+  const porcentaje = total > 0 ? ((hechas / total) * 100).toFixed(1) : "0.0";
+  
+  document.getElementById("stat-total").textContent = total;
+  document.getElementById("stat-pendientes").textContent = pendientes;
+  document.getElementById("stat-curso").textContent = curso;
+  document.getElementById("stat-hechas").textContent = hechas;
+  document.getElementById("stat-porcentaje").textContent = porcentaje;
 }
 
 function limpiarFormulario() {

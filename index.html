@@ -20,6 +20,7 @@
         <p>Pendientes: <span id="stat-pendientes">0</span></p>
         <p>En curso: <span id="stat-curso">0</span></p>
         <p>Hechas: <span id="stat-hechas">0</span></p>
+        <p>Completadas: <span id="stat-porcentaje">0</span>%</p>
       </div>
     </header>
 
@@ -62,6 +63,7 @@
       <div id="zona-tareas">
         <!-- Filtros -->
         <aside id="zona-filtros">
+          <!-- Filtro búsqueda -->
           <div class="busqueda">
             <svg
               version="1.1"
@@ -91,6 +93,7 @@
               placeholder="Buscar por título o descripción..."
             />
           </div>
+          <!-- Filtros estado + prioridad -->
           <div class="filtros">
             <select id="filtro-estado">
               <option value="todos">Todos los estados</option>
