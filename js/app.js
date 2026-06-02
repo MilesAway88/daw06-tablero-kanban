@@ -1,4 +1,4 @@
-import { agregarTarea, cambiarEstado, editarTarea, eliminarTarea, getTareas, inicializarDatos } from "./crud.js";
+import { agregarTarea, cambiarEstado, editarTarea, eliminarTarea, getTareas, getTareasFiltradas, inicializarDatos } from "./crud.js";
 import { crearTarea } from "./modelo.js";
 import { cargarTareas, guardarTareas } from "./storage.js";
 import { renderizarTablero, actualizarStats, limpiarFormulario } from "./ui.js";
@@ -18,6 +18,22 @@ function refrescarUI() {
   actualizarStats(tareas);
 }
 
+function aplicarFiltros() {
+  const filtros = {
+    busqueda: campoBusqueda.value,
+    estado: filtroEstado.value,
+    prioridad: filtroPrioridad.value
+  };
+
+  const tareasVisibles = getTareasFiltradas(getTareas(), filtros);
+  renderizarTablero(tareasVisibles, {
+    onEditar: cargarEnFormulario,
+    onEliminar: confirmarEliminar,
+    onCambiarEstado: cambiarEstado
+  });
+  actualizarStats();
+}
+
 function configurarEventos() {
   // Listeners formulario
   formulario.addEventListener("submit", manejarSubmit);
@@ -27,19 +43,10 @@ function configurarEventos() {
     botonCrear.textContent = "Crear tarea";
   });
 
-  // Listener búsqueda
-  campoBusqueda.addEventListener("input", () => {
-    // TODO: Filtrar por palabras
-  })
-
   // Listeners filtros
-  filtroEstado.addEventListener("change", () => {
-    // TODO: Filtrar por estado
-  })
-
-  filtroPrioridad.addEventListener("change", () => {
-    // TODO: Filtrar por prioridad
-  })
+  campoBusqueda.addEventListener("input", aplicarFiltros);
+  filtroEstado.addEventListener("change", aplicarFiltros);
+  filtroPrioridad.addEventListener("change", aplicarFiltros);
 }
 
 function manejarSubmit(e) {
