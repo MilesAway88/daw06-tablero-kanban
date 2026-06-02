@@ -24,21 +24,21 @@ function agregarTarea(nuevaTarea) {
 }
 
 function editarTarea(id, datosActualizados) {
-  const indice = tareas.findIndex(t => t.id === id);
+  const indice = tareas.findIndex((t) => t.id === id);
 
   if (indice != -1) {
-    tareas[indice] = {...tareas[indice], ...datosActualizados}; // Para no perder id, createdAt...
+    tareas[indice] = { ...tareas[indice], ...datosActualizados }; // Para no perder id, createdAt...
     guardarTareas(tareas);
   }
 }
 
 function eliminarTarea(id) {
-  tareas = tareas.filter(t => t.id != id);
+  tareas = tareas.filter((t) => t.id != id);
   guardarTareas(tareas);
 }
 
 function cambiarEstado(id, nuevoEstado) {
-  const tarea = tareas.find(t => t.id === id);
+  const tarea = tareas.find((t) => t.id === id);
 
   if (tarea) {
     tarea.estado = nuevoEstado;
@@ -46,4 +46,15 @@ function cambiarEstado(id, nuevoEstado) {
   }
 }
 
-export { inicializarDatos, getTareas, agregarTarea, editarTarea, eliminarTarea, cambiarEstado };
+function getTareasFiltradas(tareas, filtros) {
+  const { busqueda = "", estado = "todos", prioridad = "todas" } = filtros;
+}
+
+export {
+  inicializarDatos,
+  getTareas,
+  agregarTarea,
+  editarTarea,
+  eliminarTarea,
+  cambiarEstado,
+};
