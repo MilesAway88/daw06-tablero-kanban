@@ -15,7 +15,7 @@ function refrescarUI() {
     onCambiarEstado: cambiarEstado
   });
   
-  //actualizarStats(tareas);
+  actualizarStats(tareas);
 }
 
 function configurarEventos() {

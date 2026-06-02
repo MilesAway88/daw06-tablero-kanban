@@ -55,7 +55,7 @@ function getTareasFiltradas(tareas, filtros) {
     const coincidePrioridad = prioridad === "todas" || t.prioridad === prioridad;
 
     const textoBusqueda = quitarAcentos(busqueda);
-    const coincideTexto = busqueda === "" ||
+    const coincideTexto = !textoBusqueda ||
                           quitarAcentos(t.titulo).includes(textoBusqueda) ||
                           (t.descripcion && quitarAcentos(t.descripcion).includes(textoBusqueda));
 
