@@ -62,7 +62,7 @@ function manejarSubmit(e) {
     headerFormulario.textContent = "Crear Tarea";
     botonCrear.textContent = "Crear tarea";
   } else {
-    const nuevaTarea = crearTarea(titulo, datos.descripcion, datos.prioridad, "pendiente", datos.fechaVencimiento);
+    const nuevaTarea = crearTarea(titulo, datos.descripcion, datos.prioridad, datos.estado, datos.fechaVencimiento);
     agregarTarea(nuevaTarea);
   }
 
