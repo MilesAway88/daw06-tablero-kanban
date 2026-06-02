@@ -1,4 +1,4 @@
-import { formatearFecha } from "./modelo.js";
+import { formatearFecha } from "./utils.js";
 
 function crearTarjeta(tarea) {
   const tarjeta = document.createElement("div");

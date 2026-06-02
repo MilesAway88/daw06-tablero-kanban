@@ -1,5 +1,6 @@
 import { getDatosPrueba } from "./modelo.js";
 import { cargarTareas, guardarTareas } from "./storage.js";
+import { quitarAcentos } from "./utils.js";
 
 let tareas = [];
 
@@ -53,10 +54,10 @@ function getTareasFiltradas(tareas, filtros) {
     const coincideEstado = estado === "todos" || t.estado === estado;
     const coincidePrioridad = prioridad === "todas" || t.prioridad === prioridad;
 
-    const textoBusqueda = busqueda.toLowerCase();
+    const textoBusqueda = quitarAcentos(busqueda);
     const coincideTexto = busqueda === "" ||
-                          t.titulo.toLowerCase().includes(textoBusqueda) ||
-                          (t.descripcion && t.descripcion.toLowerCase().includes(textoBusqueda));
+                          quitarAcentos(t.titulo).includes(textoBusqueda) ||
+                          (t.descripcion && quitarAcentos(t.descripcion).includes(textoBusqueda));
 
     return coincideEstado && coincidePrioridad && coincideTexto;
   });
