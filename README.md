@@ -1,6 +1,6 @@
 # Tablero MilesBan
 
-## UT8. Documentación y control de versiones
+## UT6. Documentación y control de versiones
 
 * **Módulo:** Despliegue de Aplicaciones Web
 * **Autora:** Milena Sánchez Navarro
@@ -22,8 +22,6 @@ Incluye un formulario para la creación o modificación de una tarea, filtros y 
 * **Cambiar tarea de columna** mediante `Drag & Drop`
 
 ## Guía rápida de uso
-
-> Deberás tener instalado Node.js previamente.
 
 ### 1. Creación / modificación de tareas
 
@@ -63,3 +61,17 @@ proyecto/
 ## Capturas de pantalla
 
 > Dale [aquí](https://MilesAway88.github.io/daw06-tablero-kanban/) para acceder al proyecto desplegado en GitHub Pages.
+
+* **Desktop:**
+
+![Muestra de la página web desplegada en tamaño Desktop](img/desktop.png)
+
+* **Tablet:**
+
+![Muestra de la página web desplegada en tamaño Tablet](img/tablet.png)
+
+* **Móvil:**
+
+![Muestra 1 de la página web desplegada en tamaño Mobile](img/movil1.png)
+
+![Muestra 2 de la página web desplegada en tamaño Mobile](img/movil2.png)
