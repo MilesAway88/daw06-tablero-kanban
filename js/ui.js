@@ -1,19 +1,25 @@
 import { formatearFecha } from "./utils.js";
 
-function crearTarjeta(tarea) {
+function crearTarjeta(tarea, callbacks) {
   const tarjeta = document.createElement("div");
-  tarjeta.classList.add("tarjeta");
-  tarjeta.classList.add(`${tarea.prioridad}`);
+  tarjeta.classList.add("tarjeta", "draggable", tarea.prioridad);
+  tarjeta.dataset.id = tarea.id;
+  tarjeta.setAttribute("draggable", "true");
+  
+  addDragDropTarjeta(tarjeta, tarea.id);
 
   tarjeta.innerHTML = `
     <h3>${tarea.titulo}</h3>
     <p>${tarea.descripcion}</p>
     <small>${formatearFecha(tarea.fechaVencimiento)}</small>
     <div class="tarjeta-acciones">
-      <button class="btn-editar" data-id="${tarea.id}">Editar</button>
-      <button class="btn-eliminar" data-id="${tarea.id}">Eliminar</button>
+      <button class="btn-editar">Editar</button>
+      <button class="btn-eliminar">Eliminar</button>
     </div>
   `;
+
+  tarjeta.querySelector(".btn-editar").addEventListener("click", () => callbacks.onEditar(tarea.id));
+  tarjeta.querySelector(".btn-eliminar").addEventListener("click", () => callbacks.onEliminar(tarea.id));
 
   return tarjeta;
 }
@@ -24,11 +30,7 @@ function renderizarTablero(tareas, callbacks) {
   document.getElementById("lista-hecha").innerHTML = "";
 
   tareas.forEach(tarea => {
-    const tarjeta = crearTarjeta(tarea);
-    
-    tarjeta.querySelector(".btn-editar").addEventListener("click", () => callbacks.onEditar(tarea.id));
-    tarjeta.querySelector(".btn-eliminar").addEventListener("click", () => callbacks.onEliminar(tarea.id));
-
+    const tarjeta = crearTarjeta(tarea, callbacks);
     document.getElementById(`lista-${tarea.estado}`).appendChild(tarjeta);
   });
 }
@@ -52,4 +54,37 @@ function limpiarFormulario() {
   document.getElementById("formulario-tarea").reset();
 }
 
-export { renderizarTablero, actualizarStats, limpiarFormulario }
+function addDragDropTarjeta(tarjeta, id) {
+  tarjeta.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", id);
+    tarjeta.style.opacity = "0.6";
+  });
+
+  tarjeta.addEventListener("dragend", () => {
+    tarjeta.style.opacity = "1";
+  });
+}
+
+function addDragDropColumnas(callbacks) {
+  document.querySelectorAll(".columna").forEach(columna => {
+    columna.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      columna.classList.add("drag-over");
+    });
+
+    columna.addEventListener("dragleave", () => {
+      columna.classList.remove("drag-over");
+    });
+
+    columna.addEventListener("drop", (e) => {
+      e.preventDefault();
+      columna.classList.remove("drag-over");
+
+      const id = e.dataTransfer.getData("text/plain");
+      const nuevoEstado = columna.id.replace("col-", "");
+      callbacks.onDrop(id, nuevoEstado);
+    });
+  });
+}
+
+export { renderizarTablero, actualizarStats, limpiarFormulario, addDragDropColumnas }
