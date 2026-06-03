@@ -25,7 +25,7 @@ function refrescarUI() {
     }
   });
   
-  actualizarStats(tareas);
+  actualizarStats(getTareas()); // Todas, no solo las filtradas
 }
 
 function configurarEventos() {
