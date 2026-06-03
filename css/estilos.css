@@ -222,6 +222,27 @@ button:focus {
   border-radius: 6px;
 }
 
+/* === DRAG & DROP === */
+.tarjeta.draggable {
+  cursor: grab;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.tarjeta.draggable:active {
+  cursor: grabbing;
+}
+
+.tarjeta.drag-over {
+  opacity: 0.7;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.columna.drag-over {
+  background: #dbeafe;
+  border: 2px dashed #3b82f6;
+}
+
 /* === FOOTER === */
 footer {
   background: #233144;
@@ -235,6 +256,17 @@ footer {
 }
 
 /* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .titulo-web h1 {
+    display: none;
+  }
+
+  #panel-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .principal {
     flex-direction: column;
@@ -252,6 +284,13 @@ footer {
 
 @media (max-width: 950px) {
   #zona-filtros {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  header {
     flex-direction: column;
     gap: 1rem;
   }
