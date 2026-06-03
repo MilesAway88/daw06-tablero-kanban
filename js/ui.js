@@ -70,25 +70,25 @@ function habilitarDragDrop(callbacks) {
   });
 
   // Para las columnas
-  document.querySelectorAll(".columna").forEach(columna => {
-    columna.addEventListener("dragover", (e) => {
+  document.querySelectorAll(".lista-tareas").forEach(lista => {
+    lista.addEventListener("dragover", (e) => {
       e.preventDefault();
-      columna.classList.add("drag-over");
+      lista.classList.add("drag-over");
     });
 
-    columna.addEventListener("dragleave", () => {
-      columna.classList.remove("drag-over");
+    lista.addEventListener("dragleave", () => {
+      lista.classList.remove("drag-over");
     });
 
-    columna.addEventListener("drop", (e) => {
+    lista.addEventListener("drop", (e) => {
       e.preventDefault();
-      columna.classList.remove("drag-over");
+      lista.classList.remove("drag-over");
 
       const id = e.dataTransfer.getData("text/plain");
-      const nuevoEstado = columna.id.replace("lista-", "");
+      const nuevoEstado = lista.id.replace("lista-", "");
       callbacks.onDrop(id, nuevoEstado);
     });
   });
 }
 
-export { renderizarTablero, actualizarStats, limpiarFormulario }
+export { renderizarTablero, actualizarStats, limpiarFormulario, habilitarDragDrop }
