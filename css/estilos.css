@@ -225,7 +225,7 @@ button:focus {
 /* === DRAG & DROP === */
 .tarjeta.draggable {
   cursor: grab;
-  transition: transform 0.1s, box-shadow 0.2s;
+  transition: transform 0.1s;
 }
 
 .tarjeta.draggable:active {
@@ -234,13 +234,11 @@ button:focus {
 
 .tarjeta.drag-over {
   opacity: 0.7;
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .columna.drag-over {
   background: #dbeafe;
-  border: 2px dashed #3b82f6;
+  outline: 2px dashed #3b82f6;
 }
 
 /* === FOOTER === */

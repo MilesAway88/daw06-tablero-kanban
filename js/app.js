@@ -1,7 +1,7 @@
 import { agregarTarea, cambiarEstado, editarTarea, eliminarTarea, getTareas, getTareasFiltradas, inicializarDatos } from "./crud.js";
 import { crearTarea } from "./modelo.js";
 import { cargarTareas, guardarTareas } from "./storage.js";
-import { renderizarTablero, actualizarStats, limpiarFormulario, habilitarDragDrop } from "./ui.js";
+import { renderizarTablero, actualizarStats, limpiarFormulario, addDragDropColumnas } from "./ui.js";
 
 let tareaEditando = null;
 let formulario, headerFormulario, botonCrear, campoBusqueda, filtroEstado, filtroPrioridad;
@@ -26,13 +26,6 @@ function refrescarUI() {
   });
   
   actualizarStats(tareas);
-
-  habilitarDragDrop({
-    onDrop: (id, nuevoEstado) => {
-      cambiarEstado(id, nuevoEstado);
-      refrescarUI();
-    }
-  });
 }
 
 function configurarEventos() {
@@ -125,10 +118,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. Cargar tareas
   inicializarDatos();
   
-  // 3. Actualizar tablero
+  // 3. Render inicial
   refrescarUI();
 
   // 4. Manejar eventos
   configurarEventos();
+
+  // 5. Drag & Drop
+  addDragDropColumnas({
+    onDrop: (id, nuevoEstado) => {
+      cambiarEstado(id, nuevoEstado);
+      refrescarUI();
+    }
+  });
 });
 
