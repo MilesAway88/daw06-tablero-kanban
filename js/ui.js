@@ -15,6 +15,8 @@ function crearTarjeta(tarea) {
     </div>
   `;
 
+  tarjeta.dataset.id = tarea.id;
+
   return tarjeta;
 }
 
@@ -50,6 +52,43 @@ function actualizarStats(tareas) {
 
 function limpiarFormulario() {
   document.getElementById("formulario-tarea").reset();
+}
+
+function habilitarDragDrop(callbacks) {
+  // Para las tarjetas
+  document.querySelectorAll(".tarjeta").forEach(tarjeta => {
+    tarjeta.setAttribute("draggable", "true");
+
+    tarjeta.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", tarjeta.dataset.id);
+      tarjeta.style.opacity = "0.6";
+    });
+
+    tarjeta.addEventListener("dragend", () => {
+      tarjeta.style.opacity = "1";
+    });
+  });
+
+  // Para las columnas
+  document.querySelectorAll(".columna").forEach(columna => {
+    columna.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      columna.classList.add("drag-over");
+    });
+
+    columna.addEventListener("dragleave", () => {
+      columna.classList.remove("drag-over");
+    });
+
+    columna.addEventListener("drop", (e) => {
+      e.preventDefault();
+      columna.classList.remove("drag-over");
+
+      const id = e.dataTransfer.getData("text/plain");
+      const nuevoEstado = columna.id.replace("lista-", "");
+      callbacks.onDrop(id, nuevoEstado);
+    });
+  });
 }
 
 export { renderizarTablero, actualizarStats, limpiarFormulario }
