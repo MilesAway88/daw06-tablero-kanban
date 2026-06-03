@@ -27,15 +27,18 @@ Incluye un formulario para la creación o modificación de una tarea, filtros y 
 
 ### 1. Creación / modificación de tareas
 
-S
+* **Nueva tarea:** Rellena el formulario y pulsa en `Crear tarea`
+* **Modificar tarea:** Haz clic en `Editar` en la tarjeta que desees, modifica los campos correspondientes y pulsa en `Guardar cambios`.
 
 ### 2. Búsqueda y filtrado
 
-S
+Para refinar la búsqueda, puedes combinar el `buscador` con el `filtro de estado` y el `filtro de prioridad`. Se mostrarán los resultados que cumplan con tus selecciones.
 
 ### 3. Visualización y cambio de estado de tareas
 
-S
+Las tareas se visualizan en 3 columnas distintas según su estado.
+
+Para cambiarlas de columnas puedes hacerlo editando la tarea o, de forma más sencilla, arrastrando y soltando la tarjeta en la columna correspondiente (`Drag&Drop`).
 
 ## Estructura del proyecto
 
@@ -43,10 +46,15 @@ S
 proyecto/
 ├── css/
 │   └── estilos.css
+├── docs/           # Documentación de las issues
 ├── img/
 ├── js/
-│   ├── script.js
-│   └── s
+│   ├── app.js      # Entrada a la app
+│   ├── crud.js     # Lógica de negocio y filtros
+│   ├── modelo.js   # Definición y creación de tarea
+│   ├── storage.js  # Persistencia de datos
+│   ├── ui.js       # Manipulación del DOM y renderizado
+│   └── utils.js    # Funciones de ayuda
 ├── .gitignore
 ├── index.html
 └── README.md
@@ -54,4 +62,4 @@ proyecto/
 
 ## Capturas de pantalla
 
-> Dale [aquí]() para acceder al proyecto desplegado en GitHub Pages.
+> Dale [aquí](https://MilesAway88.github.io/daw06-tablero-kanban/) para acceder al proyecto desplegado en GitHub Pages.
